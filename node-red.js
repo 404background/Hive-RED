@@ -2,6 +2,7 @@ var http = require('http');
 var express = require("express");
 var RED = require("node-red");
 var path = require("path");
+var net = require("net");
 
 var app = express();
 app.use("/", express.static("public"));
@@ -20,22 +21,36 @@ RED.init(server, settings);
 app.use(settings.httpAdminRoot, RED.httpAdmin);
 app.use(settings.httpNodeRoot, RED.httpNode);
 
-let port = 8000;
+function checkPort(port, callback) {
+    var tester = net.createServer()
+    tester.once('error', function(err) {
+        if (err.code === 'EADDRINUSE') {
+            callback(true);
+        }
+    });
+    tester.once('listening', function() {
+        tester.once('close', function() {
+            callback(false);
+        });
+        tester.close();
+    });
+    tester.listen(port);
+}
 
 function startServer(port) {
-    server.listen(port, () => {
-        const url = `http://localhost:${port}`;
-        console.log(`Node-RED started at ${url}`);
-        console.log(`Admin UI available at ${url}${settings.httpAdminRoot}`);
-        RED.start();
-    }).on('error', (err) => {
-        if (err.code === 'EADDRINUSE') {
-            console.log(`Port ${port} is in use, trying port ${port + 1}`);
+    checkPort(port, function(inUse) {
+        if (inUse) {
             startServer(port + 1);
         } else {
-            console.error(`Failed to start server: ${err.message}`);
+            server.listen(port, () => {
+                const url = `http://localhost:${port}`;
+                console.log(`Node-RED started at ${url}`);
+                console.log(`Admin UI available at ${url}${settings.httpAdminRoot}`);
+                RED.start();
+            });
         }
     });
 }
 
-startServer(port);
+let init_port = 8000;
+startServer(init_port);
