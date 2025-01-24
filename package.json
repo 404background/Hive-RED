@@ -4,7 +4,8 @@
   "description": "Simple Node-RED setup environment",
   "main": "node-red.js",
   "scripts": {
-    "postinstall": ".\\setup.bat"
+    "setup": ".\\setup.bat",
+    "node-red": "node node-red.js"
   },
   "repository": {
     "type": "git",

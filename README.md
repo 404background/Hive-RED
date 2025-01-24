@@ -16,6 +16,8 @@ Node.js must be installed in advance.
 
 Node.js: <https://nodejs.org/en/download>
 
-Use npm command to install.
+In the directory of this repository, use npm command to setup.
 
-`npm install <folder path>`
+```
+npm run setup
+```
