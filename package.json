@@ -1,0 +1,22 @@
+{
+  "name": "@background404/hive-red",
+  "version": "0.0.1",
+  "description": "Simple Node-RED setup environment",
+  "main": "node-red/node-red.js",
+  "scripts": {
+    "postinstall": ".\\node-red\\setup.bat"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/404background/Hive-RED.git"
+  },
+  "keywords": [
+    "node-red"
+  ],
+  "author": "background404",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/404background/Hive-RED/issues"
+  },
+  "homepage": "https://github.com/404background/Hive-RED#readme"
+}
