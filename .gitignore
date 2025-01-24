@@ -1,7 +1,7 @@
 *.json
 !/package.json
-/node-red/.nodered/*
-!/node-red/.nodered/README.md
+/.nodered/*
+!/.nodered/README.md
 
 # Node
 

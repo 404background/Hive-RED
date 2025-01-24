@@ -8,6 +8,8 @@ var app = express();
 app.use("/", express.static("public"));
 var server = http.createServer(app);
 
+var init_port = process.argv[2] ? parseInt(process.argv[2], 10) : 8000;
+
 var settings = {
     httpAdminRoot: "/red",
     httpNodeRoot: "/api",
@@ -22,7 +24,7 @@ app.use(settings.httpAdminRoot, RED.httpAdmin);
 app.use(settings.httpNodeRoot, RED.httpNode);
 
 function checkPort(port, callback) {
-    var tester = net.createServer()
+    var tester = net.createServer();
     tester.once('error', function(err) {
         if (err.code === 'EADDRINUSE') {
             callback(true);
@@ -52,5 +54,4 @@ function startServer(port) {
     });
 }
 
-let init_port = 8000;
 startServer(init_port);
