@@ -4,7 +4,7 @@
   "description": "Simple Node-RED setup environment",
   "main": "node-red.js",
   "scripts": {
-    "setup": "if [ \"$(uname -s)\" = \"Linux\" ]; then bash ./setup.sh; else .\\setup.bat; fi",
+    "setup": "node -e \"const os = require('os'); const { execSync } = require('child_process'); if (os.platform() === 'win32') { execSync('setup.bat', { stdio: 'inherit' }); } else { execSync('bash ./setup.sh', { stdio: 'inherit' }); }\"",
     "node-red": "node node-red.js"
   },
   "repository": {
