@@ -4,7 +4,7 @@
   "description": "Simple Node-RED setup environment",
   "main": "node-red.js",
   "scripts": {
-    "setup": ".\\setup.bat",
+    "setup": "if [ \"$(uname -s)\" = \"Linux\" ]; then bash ./setup.sh; else .\\setup.bat; fi",
     "node-red": "node node-red.js"
   },
   "repository": {
