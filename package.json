@@ -1,19 +1,17 @@
 {
-  "name": "@background404/hive-red",
-  "version": "0.0.1",
+  "name": "hive-red",
+  "version": "1.0.0",
+  "private": true,
   "description": "Simple Node-RED setup environment",
-  "main": "node-red.js",
+  "main": "index.js",
   "scripts": {
-    "setup": "node -e \"const os = require('os'); const { execSync } = require('child_process'); if (os.platform() === 'win32') { execSync('setup.bat', { stdio: 'inherit' }); } else { execSync('bash ./setup.sh', { stdio: 'inherit' }); }\"",
-    "node-red": "node node-red.js"
+    "start": "node index.js",
+    "reset": "node index.js reset"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/404background/Hive-RED.git"
   },
-  "keywords": [
-    "node-red"
-  ],
   "author": "background404",
   "license": "MIT",
   "bugs": {
