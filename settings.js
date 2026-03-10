@@ -5,8 +5,8 @@ module.exports = {
     port: 8000,
 
     // Node-RED user directory (where settings and node modules are stored)
-    // Use 'data' folder within the project
-    userDir: path.join(__dirname, "data"),
+    // Use '.nodered' folder within the project
+    userDir: path.join(__dirname, ".nodered"),
 
     // Path to the admin UI
     httpAdminRoot: "/red",
@@ -19,6 +19,7 @@ module.exports = {
         // Add modules as needed
         // os: require('os'),
     },
+    functionExternalModules: true,
 
     // Logging configuration
     logging: {
